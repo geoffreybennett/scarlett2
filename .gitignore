@@ -1,0 +1,4 @@
+/.deps
+/firmware
+*.o
+scarlett2
