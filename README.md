@@ -88,6 +88,20 @@ USB Product ID, Product Name, and Firmware versions available (* = connected)
 
 ## Build
 
+On Fedora, you'll need the `alsa-lib-devel` package:
+
+```
+sudo dnf -y install alsa-lib-devel
+```
+
+On Ubuntu:
+
+```
+sudo apt -y install make gcc pkg-config libasound2-dev
+```
+
+To build & install:
+
 ```
 make
 sudo make install
