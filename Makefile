@@ -20,6 +20,7 @@ PKG_CONFIG=pkg-config
 CFLAGS += $(shell $(PKG_CONFIG) --cflags alsa)
 
 LDFLAGS += $(shell $(PKG_CONFIG) --libs alsa)
+LDFLAGS += -lm -lcrypto
 
 COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) -c
 
@@ -47,7 +48,7 @@ $(DEPFILES):
 include $(wildcard $(DEPFILES))
 
 $(TARGET): $(OBJS)
-	cc -o $(TARGET) $(OBJS) ${LDFLAGS} -lm -lcrypto
+	cc -o $(TARGET) $(OBJS) ${LDFLAGS}
 
 ifeq ($(PREFIX),)
   PREFIX := /usr/local
