@@ -7,7 +7,6 @@
 #include "scarlett2.h"
 
 #include "scarlett2-ioctls.h"
-#include "scarlett2-firmware.h"
 
 int scarlett2_open_card(char *alsa_name, snd_hwdep_t **hwdep) {
   return snd_hwdep_open(hwdep, alsa_name, SND_HWDEP_OPEN_DUPLEX);
