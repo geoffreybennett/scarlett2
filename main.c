@@ -928,7 +928,7 @@ static void open_card(char *alsa_name) {
         REQUIRED_HWDEP_VERSION_MAJOR) {
     fprintf(
       stderr,
-      "Unsupported protocol version %d.%d.%d on card %s\n",
+      "Unsupported hwdep protocol version %d.%d.%d on card %s\n",
       SCARLETT2_HWDEP_VERSION_MAJOR(protocol_version),
       SCARLETT2_HWDEP_VERSION_MINOR(protocol_version),
       SCARLETT2_HWDEP_VERSION_SUBMINOR(protocol_version),
