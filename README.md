@@ -88,16 +88,22 @@ USB Product ID, Product Name, and Firmware versions available (* = connected)
 
 ## Build
 
-On Fedora, you'll need the `alsa-lib-devel` package:
+On Fedora, you'll need these packages:
 
 ```
-sudo dnf -y install alsa-lib-devel
+sudo dnf -y install alsa-lib-devel openssl-devel
+```
+
+On OpenSUSE:
+
+```
+sudo zypper in alsa-devel libopenssl-devel
 ```
 
 On Ubuntu:
 
 ```
-sudo apt -y install make gcc pkg-config libasound2-dev
+sudo apt -y install make gcc pkg-config libasound2-dev libssl-dev
 ```
 
 To build & install:
