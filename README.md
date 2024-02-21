@@ -3,8 +3,10 @@
 ## Overview
 
 This command-line tool provides firmware management for Focusrite
-interfaces using the Scarlett2 USB protocol, supporting Scarlett 2nd,
-3rd, 4th Gen, Clarett USB, and Clarett+ series.
+audio interfaces using the Scarlett2 USB protocol, which includes
+these series:
+- Scarlett 2nd, 3rd, and 4th Gen
+- Clarett USB and Clarett+
 
 Available operations:
 - `reboot` — reboot the device
@@ -12,22 +14,28 @@ Available operations:
 - `erase-firmware` — reset the device to factory firmware
 - `update` — update the device's firmware
 
-This is a pre-release, not suitable for the general public yet. Please
-contact the author by email if you'd like to assist with testing.
-
 ## Requirements
 
-- The updated Scarlett2 kernel module with Scarlett 4th Gen and
-  firmware update support, available from
-  https://github.com/geoffreybennett/scarlett-gen2/releases/tag/v6.5.11-g4.1
+To use this utility, you'll need a recent kernel (>= 6.8) plus the
+firmware itself.
 
-- Device firmware should be placed in `/usr/lib/firmware/scarlett2` or
-  a subdirectory `firmware` relative to the binary.
+### Linux Kernel
 
-## Downloading Firmware
+- Linux Kernel 6.8 includes the driver as part of the `snd_usb_audio`
+  module.
 
-Before this tool will be very useful, you'll need to download the
-firmware from (TBA).
+OR
+
+- A backported `snd_usb_audio` kernel module with Scarlett 4th Gen and
+  firmware update support is available from
+  https://github.com/geoffreybennett/scarlett-gen2/releases/tag/v6.7-rc2-g4.3
+
+### Device Firmware
+
+Device firmware should be downloaded from
+https://github.com/geoffreybennett/scarlett2-firmware and placed in
+`/usr/lib/firmware/scarlett2` or a subdirectory `firmware` relative to
+the binary.
 
 ## Demo
 
@@ -64,7 +72,7 @@ Rebooting interface...
 Found 1 supported device:
   card1: Scarlett 3rd Gen Solo (firmware version 1605)
 
-[g@parker scarlett2]$ scarlett2 list-all
+[g@fedora scarlett2]$ scarlett2 list-all
 USB Product ID, Product Name, and Firmware versions available (* = connected)
  8203 Scarlett 2nd Gen 6i6     1583, 1076
  8204 Scarlett 2nd Gen 18i8    1583, 1331
@@ -132,7 +140,7 @@ appreciation:
 
 ## License
 
-Copyright 2023 Geoffrey D. Bennett <g@b4.vu>
+Copyright 2023-2024 Geoffrey D. Bennett <g@b4.vu>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
