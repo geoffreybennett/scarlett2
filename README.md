@@ -10,7 +10,7 @@ these series:
 
 Available operations:
 - `reboot` — reboot the device
-- `reset-config` — reset to factory configuration
+- `reset-config` — reset to default configuration
 - `erase-firmware` — reset the device to factory firmware
 - `update` — update the device's firmware
 
@@ -46,7 +46,7 @@ Found 1 supported device:
 
 [g@fedora ~]$ scarlett2 erase-firmware
 Selected device Scarlett 3rd Gen Solo
-Resetting configuration to factory default...
+Resetting to default configuration...
 Erase progress: Done!
 Erasing upgrade firmware...
 Erase progress: Done!
@@ -61,7 +61,7 @@ Selected device Scarlett 3rd Gen Solo
 Found firmware version 1605 for Scarlett 3rd Gen Solo:
   /usr/lib/firmware/scarlett2/scarlett2-1235-8211-1605.bin
 Updating Scarlett 3rd Gen Solo from firmware version 1535 to 1605
-Resetting configuration to factory default...
+Resetting to default configuration...
 Erase progress: Done!
 Erasing upgrade firmware...
 Erase progress: Done!

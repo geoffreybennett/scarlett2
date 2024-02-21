@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2023 Geoffrey D. Bennett <g@b4.vu>
+// SPDX-FileCopyrightText: 2023-2024 Geoffrey D. Bennett <g@b4.vu>
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include <stdio.h>
@@ -541,7 +541,7 @@ static void usage(void) {
     "  list-all              List all supported products and\n"
     "                        available firmware versions\n"
     "  reboot                Reboot device\n"
-    "  reset-config          Reset configuration to factory defaults\n"
+    "  reset-config          Reset to default configuration\n"
     "  erase-firmware        Reset device to factory firmware\n"
     "\n"
     "Lesser-used options:\n"
@@ -1005,7 +1005,7 @@ static void monitor_erase_progress(void) {
 static void reset_config(void) {
   open_card(selected_card->alsa_name);
 
-  printf("Resetting configuration to factory default...\n");
+  printf("Resetting to default configuration...\n");
 
   // send request to erase config
   int err = scarlett2_erase_config(hwdep);
