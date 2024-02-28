@@ -7,6 +7,7 @@ audio interfaces using the Scarlett2 USB protocol, which includes
 these series:
 - Scarlett 2nd, 3rd, and 4th Gen
 - Clarett USB and Clarett+
+- Vocaster
 
 Available operations:
 - `reboot` — reboot the device
@@ -16,19 +17,22 @@ Available operations:
 
 ## Requirements
 
-To use this utility, you'll need a recent kernel (>= 6.8) plus the
-firmware itself.
+To use this utility, you'll need the firmware itself, plus a kernel
+with a recent-enough version of the `snd_usb_audio` module.
 
 ### Linux Kernel
 
-- Linux Kernel 6.8 includes the driver as part of the `snd_usb_audio`
-  module.
+- Linux Kernel 6.8 includes the Scarlett2 driver with firmware update
+  support as part of the `snd_usb_audio` module for all supported
+  interfaces except Vocaster (which should arrive in 6.10)
 
 OR
 
-- A backported `snd_usb_audio` kernel module with Scarlett 4th Gen and
-  firmware update support is available from
-  https://github.com/geoffreybennett/scarlett-gen2/releases/tag/v6.7-rc2-g4.3
+- The latest version of the Scarlett2 driver (with firmware update and
+  Vocaster support) is available at
+  https://github.com/geoffreybennett/scarlett-gen2/releases — this is
+  a replacement `snd_usb_audio` kernel module which you can build
+  against any running kernel 5.15–6.8
 
 ### Device Firmware
 
@@ -83,6 +87,8 @@ USB Product ID, Product Name, and Firmware versions available (* = connected)
  8213 Scarlett 3rd Gen 8i6     1605, 1552
  8214 Scarlett 3rd Gen 18i8    1605, 1552
  8215 Scarlett 3rd Gen 18i20   1644, 1563
+ 8216 Vocaster One             1769
+ 8217 Vocaster Two             1769
 *8218 Scarlett 4th Gen Solo    2115, 2096, 2082 (running: 2115)
  8219 Scarlett 4th Gen 2i2     2115, 2100, 2096, 2082
  821a Scarlett 4th Gen 4i4     2089, 2082
