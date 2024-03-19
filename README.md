@@ -76,12 +76,12 @@ Rebooting interface...
 Found 1 supported device:
   card1: Scarlett 3rd Gen Solo (firmware version 1605)
 
-[g@fedora scarlett2]$ scarlett2 list-all
+[g@fedora ~]$ scarlett2 list-all
 USB Product ID, Product Name, and Firmware versions available (* = connected)
  8203 Scarlett 2nd Gen 6i6     1583, 1076
  8204 Scarlett 2nd Gen 18i8    1583, 1331
  8201 Scarlett 2nd Gen 18i20   1653, 1083
- 8211 Scarlett 3rd Gen Solo    1605, 1552
+*8211 Scarlett 3rd Gen Solo    1605, 1552 (running: 1605)
  8210 Scarlett 3rd Gen 2i2     1605, 1552
  8212 Scarlett 3rd Gen 4i4     1605, 1552
  8213 Scarlett 3rd Gen 8i6     1605, 1552
@@ -89,7 +89,7 @@ USB Product ID, Product Name, and Firmware versions available (* = connected)
  8215 Scarlett 3rd Gen 18i20   1644, 1563
  8216 Vocaster One             1769
  8217 Vocaster Two             1769
-*8218 Scarlett 4th Gen Solo    2115, 2096, 2082 (running: 2115)
+ 8218 Scarlett 4th Gen Solo    2115, 2096, 2082
  8219 Scarlett 4th Gen 2i2     2115, 2100, 2096, 2082
  821a Scarlett 4th Gen 4i4     2089, 2082
  8206 Clarett USB 2Pre         1552
