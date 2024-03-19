@@ -133,6 +133,12 @@ Usually, just `scarlett2 update` is all you need.
 
 Run `scarlett2 help` and `scarlett2 about` for more information.
 
+## See Also
+
+The [ALSA Scarlett2 Control
+Panel](https://github.com/geoffreybennett/alsa-scarlett-gui/)
+(`alsa-scarlett-gui`), a Gtk4 GUI for these interfaces.
+
 ## Donations
 
 This program, the kernel driver, and the GUI are Free Software,
