@@ -97,10 +97,17 @@ int protocol_version = 0;
 static int check_usb_id(const char *card_name) {
   char proc_path[256];
   char usbid[USBID_SIZE];
-  FILE *f;
 
-  snprintf(proc_path, sizeof(proc_path), "/proc/asound/%s/usbid", card_name);
-  f = fopen(proc_path, "r");
+  // check if /proc/asound/<card> exists
+  sprintf(proc_path, "/proc/asound/%s", card_name);
+  if (access(proc_path, F_OK) != 0) {
+    fprintf(stderr, "Missing %s (CONFIG_SND_PROC_FS not set?)\n", proc_path);
+    return 0;
+  }
+
+  // attempt to open /proc/asound/<card>/usbid
+  strcat(proc_path, "/usbid");
+  FILE *f = fopen(proc_path, "r");
   if (!f)
     return 0;
 
