@@ -22,17 +22,9 @@ with a recent-enough version of the `snd_usb_audio` module.
 
 ### Linux Kernel
 
-- Linux Kernel 6.8 includes the Scarlett2 driver with firmware update
-  support as part of the `snd_usb_audio` module for all supported
-  interfaces except Vocaster (which should arrive in 6.10)
-
-OR
-
-- The latest version of the Scarlett2 driver (with firmware update and
-  Vocaster support) is available at
-  https://github.com/geoffreybennett/scarlett-gen2/releases — this is
-  a replacement `snd_usb_audio` kernel module which you can build
-  against any running kernel 5.15–6.8
+Linux kernel 6.10 or later is required (6.8 for all models
+except Vocaster). The Scarlett2 driver with firmware update
+support is included in the `snd_usb_audio` module.
 
 ### Device Firmware
 
@@ -100,7 +92,13 @@ USB Product ID, Product Name, and Firmware versions available (* = connected)
  820c Clarett+ 8Pre            1955
 ```
 
-## Build
+## Installation
+
+RPM and deb packages are available from the
+[GitHub Releases](https://github.com/geoffreybennett/scarlett2/releases)
+page.
+
+### Building from Source
 
 On Fedora, you'll need these packages:
 
@@ -135,9 +133,12 @@ Run `scarlett2 help` and `scarlett2 about` for more information.
 
 ## See Also
 
-The [ALSA Scarlett2 Control
+The [ALSA Scarlett Control
 Panel](https://github.com/geoffreybennett/alsa-scarlett-gui/)
-(`alsa-scarlett-gui`), a Gtk4 GUI for these interfaces.
+(`alsa-scarlett-gui`), a Gtk4 GUI for these interfaces. The
+GUI can also perform firmware updates directly, so this CLI
+tool is only needed if you prefer command-line operation or
+don't have a display.
 
 ## Donations
 
@@ -152,7 +153,7 @@ appreciation:
 
 ## License
 
-Copyright 2023-2024 Geoffrey D. Bennett <g@b4.vu>
+Copyright 2023-2026 Geoffrey D. Bennett <g@b4.vu>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
