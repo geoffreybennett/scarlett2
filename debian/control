@@ -1,0 +1,8 @@
+Package: scarlett2
+Version: VERSION
+Section: sound
+Priority: optional
+Architecture: amd64
+Depends: libasound2, libssl3
+Maintainer: Geoffrey D. Bennett <g@b4.vu>
+Description: CLI tool for Focusrite Scarlett/Clarett/Vocaster audio interfaces

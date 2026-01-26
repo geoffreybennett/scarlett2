@@ -1,0 +1,96 @@
+name: Build Release Packages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to build (e.g., 1.0-rc1)'
+        required: true
+        default: 'test'
+
+permissions:
+  contents: write
+
+env:
+  APP_NAME: scarlett2
+  APP_VERSION: ${{ github.event.release.tag_name || github.event.inputs.version }}
+
+jobs:
+  build-rpm:
+    runs-on: ubuntu-latest
+    container: fedora:latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install build dependencies
+        run: dnf install -y rpm-build make gcc git alsa-lib-devel openssl-devel
+
+      - name: Build RPM
+        run: |
+          VERSION=$(echo "${{ env.APP_VERSION }}" | sed 's/-rc/~rc/g')
+          make rpm VERSION="$VERSION"
+
+      - name: Find RPM
+        id: find-rpm
+        run: |
+          RPM_PATH=$(find ~/rpmbuild/RPMS -name '*.rpm' | head -1)
+          echo "rpm_path=$RPM_PATH" >> $GITHUB_OUTPUT
+          echo "rpm_name=$(basename $RPM_PATH)" >> $GITHUB_OUTPUT
+
+      - name: Upload RPM as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: rpm-package
+          path: ${{ steps.find-rpm.outputs.rpm_path }}
+
+      - name: Upload RPM to release
+        if: github.event_name == 'release'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ${{ steps.find-rpm.outputs.rpm_path }}
+          asset_name: ${{ steps.find-rpm.outputs.rpm_name }}
+          asset_content_type: application/x-rpm
+
+  build-deb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y make gcc libasound2-dev libssl-dev
+
+      - name: Build deb
+        run: make deb VERSION=${{ env.APP_VERSION }}
+
+      - name: Find deb
+        id: find-deb
+        run: |
+          DEB_PATH=$(ls ${{ env.APP_NAME }}_${{ env.APP_VERSION }}_*.deb | head -1)
+          echo "deb_path=$DEB_PATH" >> $GITHUB_OUTPUT
+          echo "deb_name=$(basename $DEB_PATH)" >> $GITHUB_OUTPUT
+
+      - name: Upload deb as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deb-package
+          path: ${{ steps.find-deb.outputs.deb_path }}
+
+      - name: Upload deb to release
+        if: github.event_name == 'release'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ${{ steps.find-deb.outputs.deb_path }}
+          asset_name: ${{ steps.find-deb.outputs.deb_name }}
+          asset_content_type: application/vnd.debian.binary-package

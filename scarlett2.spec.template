@@ -1,0 +1,39 @@
+%global debug_package %{nil}
+
+Name:           scarlett2
+Version:        VERSION
+Release:        1%{?dist}
+Summary:        CLI tool for Focusrite Scarlett/Clarett/Vocaster audio interfaces
+
+License:        GPLv3+
+URL:            https://github.com/geoffreybennett/scarlett2
+Source0:        %{name}-%{version}.tar.gz
+
+BuildRequires:  make
+BuildRequires:  gcc
+BuildRequires:  pkgconfig(alsa)
+BuildRequires:  pkgconfig(libcrypto)
+
+Requires:       alsa-lib
+
+%description
+scarlett2 is a command-line tool for Focusrite Scarlett 2nd/3rd/4th Gen,
+Clarett USB/+, and Vocaster audio interfaces. It provides firmware
+update capability and direct device control via ALSA.
+
+%prep
+%setup -q
+
+%build
+%make_build VERSION=%{version} PREFIX=%{_prefix}
+
+%install
+%make_install PREFIX=%{_prefix}
+
+%files
+%license COPYING
+%{_bindir}/scarlett2
+
+%changelog
+* Mon Jan 26 2026 Geoffrey D. Bennett <g@b4.vu> - 1.0-1
+- Release 1.0
